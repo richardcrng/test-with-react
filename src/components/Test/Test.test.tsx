@@ -6,7 +6,6 @@ describe('Test', () => {
   describe('Description block', () => {
     it('shows the description text', () => {
       const { container } = render(<Test describe='Some test description' />);
-      // const testElement = getByText();
       expect(container).toHaveTextContent(/some test description/i);
     })
   })
@@ -66,6 +65,17 @@ describe('Test', () => {
         />
       ));
       expect(container).toHaveTextContent(`✅`);
+    })
+
+    it("explains the discrepancy by default", () => {
+      const { container } = render((
+        <Test
+          it='Says 4 is equal to 5'
+          actual={4}
+          expected={5}
+        />
+      ));
+      expect(container).toHaveTextContent(/expected 4 to be 5/i)
     })
   })
 })

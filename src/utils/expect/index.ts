@@ -17,7 +17,7 @@ export class Expectation {
   toEqual(prediction: any) {
     return new Assertion(
       equals(this.actual, prediction),
-      `Expected ${this.actual} to be ${prediction}`
+      `Expected ${this.actual} to deeply equal ${prediction}`
     )
   }
 }

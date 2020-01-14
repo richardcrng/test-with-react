@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import expect, { Assertion } from '../../../utils/expect';
+import expect, { Assertion } from '../../utils/expect';
 
 interface Props {
   describe?: string
@@ -8,11 +8,11 @@ interface Props {
   actual?: any
   expected?: any
   to?: 'be' | 'equal'
-  children?: React.ReactChildren
+  children?: React.ReactNode
 }
 
 const Indented = styled.div`
-  margin-left: 10px;
+  margin-left: 2rem;
 `
 
 function Test({
@@ -33,7 +33,6 @@ function Test({
   }
 
   if (testDescription) {
-    // const expectation = expect(actual)
     let assertion: Assertion
 
     switch (to) {
@@ -50,6 +49,16 @@ function Test({
         {assertion.result ? `✅` : `❌`}
         <span> </span>
         {testDescription}
+        {assertion.result && assertion.ifTrue && (
+          <Indented>
+            {assertion.ifTrue}
+          </Indented>
+        )}
+        {!assertion.result && assertion.ifFalse && (
+          <Indented>
+            {assertion.ifFalse}
+          </Indented>
+        )}
       </div>
     )
   }
