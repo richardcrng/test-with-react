@@ -12,6 +12,11 @@ const App: React.FC = () => {
           actual={4}
           expected={4}
         />
+        <Test
+          it='Does other stuff'
+          actual={4}
+          expected={5}
+        />
       </Test>
     </div>
   );

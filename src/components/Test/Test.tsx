@@ -11,8 +11,15 @@ interface Props {
   children?: React.ReactNode
 }
 
+const Block = styled.div`
+`
+
 const Indented = styled.div`
   margin-left: 2rem;
+`
+
+const ErrorMessage = styled.span`
+  color: red;
 `
 
 function Test({
@@ -25,10 +32,10 @@ function Test({
 } : Props) {
   if (blockDescription) {
     return (
-      <div>
+      <Block>
         {blockDescription}
         <Indented>{children}</Indented>
-      </div>
+      </Block>
     )
   }
 
@@ -56,7 +63,7 @@ function Test({
         )}
         {!assertion.result && assertion.ifFalse && (
           <Indented>
-            {assertion.ifFalse}
+            <ErrorMessage>{assertion.ifFalse}</ErrorMessage>
           </Indented>
         )}
       </div>
