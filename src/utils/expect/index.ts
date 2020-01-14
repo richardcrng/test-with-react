@@ -1,6 +1,6 @@
 import { equals } from 'ramda'
 
-class Expectation {
+export class Expectation {
   actual: any
 
   constructor(value: any) {
@@ -8,21 +8,21 @@ class Expectation {
   }
 
   toBe(prediction: any) {
-    return new Test(
+    return new Assertion(
       this.actual === prediction,
       `Expected ${this.actual} to be ${prediction}`
     )
   }
 
   toEqual(prediction: any) {
-    return new Test(
+    return new Assertion(
       equals(this.actual, prediction),
       `Expected ${this.actual} to be ${prediction}`
     )
   }
 }
 
-class Test {
+export class Assertion {
   result: boolean
   ifFalse?: string
   ifTrue?: string
